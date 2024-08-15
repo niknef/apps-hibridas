@@ -1,0 +1,12 @@
+{
+  "name": "ejercicio",
+  "version": "1.0.0",
+  "description": "ejercicio clase 2 app hibridas",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Nicolas Firpo",
+  "license": "MIT"
+}
