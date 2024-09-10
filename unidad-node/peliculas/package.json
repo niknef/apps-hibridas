@@ -1,0 +1,21 @@
+{
+  "name": "peliculas",
+  "version": "1.0.0",
+  "description": "- npm install -y\r - npm i nodemon -D\r - npm install express",
+  "main": "server.js",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js --ignore '*.json'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
