@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "- npm install -y\r - npm i nodemon -D\r - npm install express",
   "main": "server.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
@@ -16,6 +16,6 @@
     "nodemon": "^3.1.4"
   },
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.21.0"
   }
 }

@@ -18,16 +18,18 @@ const nuevaPelicula = (req, res) => {
     res.send( peliculaView.crearPagina("Nueva pelicula", peliculaView.nuevaPelicula() ) )
 }
 
-
 const agregarPelicula = (req, res) => {
     peliculaService.agregarPelicula(req.body)
-    .then( ( pelicula ) => res.send( peliculaView.crearPagina("Nueva pelicula", `<p>id: ${pelicula.id} <br> Titulo: ${pelicula.titulo}</p>`  ) ) )
+    // .then( (pelicula) => res.send( peliculaView.crearPagina("Nueva pelicula", `<p>id: ${pelicula.id} <br> Titulo: ${pelicula.nombre}</p>`  ) ) )
+    .then( ( pelicula ) => res.redirect("/peliculas") )
     .catch( (err) => res.send(peliculaView.crearPagina("Error Al agregar una pelicula", `<p>${err}</p>`)) )
-
 }
 
 const eliminarPelicula = (req, res) => {
-    
+    peliculaService.eliminarPelicula(req.params.id)
+        // .then( ( pelicula ) => res.send( peliculaView.crearPagina("Pelicula Eliminada", `<p>id: ${pelicula.id} <br> Titulo: ${pelicula.titulo}</p>`  ) ) )
+        .then( ( id ) => res.redirect("/peliculas") )
+        .catch( (err) => res.send(peliculaView.crearPagina("Error Al eliminar una pelicula", `<p>${err}</p>`)) )
 }
 
 export {

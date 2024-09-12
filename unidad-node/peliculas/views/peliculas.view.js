@@ -46,6 +46,7 @@ function crearCardsPeliculas(peliculas) {
                     <div class="d-flex flex-row mt-2 align-middle gap-2">
                         <a href="${pelicula.trailer}" target="_blank" class="btn btn-primary">Ver trailer</a>
                         <a class="btn btn-secondary" href='/peliculas/${pelicula.id}' >Detalle</a>
+                        <a class="btn btn-danger" href='/peliculas/eliminar/${pelicula.id}' >Eliminar</a>
                     </div>
                     </div>
                 </div>
@@ -88,48 +89,60 @@ function crearDetallePelicula(pelicula) {
     return html;
 };
 
-function nuevaPelicula(){
-    let html = ` <div class="container mt-5">
-    <h2>Agregar Nueva Película</h2>
-    <form action='/peliculas/nuevo' method='post'>
-        <div class="form-group">
-            <label for="nombre">Nombre de la película</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Ingresa el nombre de la película" required>
-        </div>
-        <div class="form-group">
-            <label for="anio">Año</label>
-            <input type="number" class="form-control" id="anio" placeholder="Ingresa el año de lanzamiento" required>
-        </div>
-        <div class="form-group">
-            <label for="genero">Género</label>
-            <select multiple class="form-control" id="genero" required>
-                <option>Acción</option>
-                <option>Aventura</option>
-                <option>Romance</option>
-                <option>Crimen</option>
-                <option>Suspenso</option>
-                <option>Ciencia Ficción</option>
-                <option>Catástrofes</option>
-                <option>Drama</option>
-                <option>Fantasía</option>
-            </select>
-            <small class="form-text text-muted">Mantén presionada la tecla Ctrl (Cmd en Mac) para seleccionar múltiples géneros.</small>
-        </div>
-        <div class="form-group">
-            <label for="img">Imagen</label>
-            <input type="file" class="form-control-file" id="img">
-            <small class="form-text text-muted">Si no cargas ninguna imagen, se usará una imagen por defecto.</small>
-        </div>
-        <div class="form-group">
-            <label for="trailer">URL del Trailer</label>
-            <input type="url" class="form-control" id="trailer" placeholder="Ingresa la URL del trailer" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Agregar Película</button>
-    </form>
-</div>`;
-    return html
-}
+function nuevaPelicula() {
+    let html = `
+    <div class="container mt-5 mb-5 p-4 bg-light border rounded shadow-sm">
+        
+    <h2 class="text-center text-primary mb-4">Agregar Nueva Película</h2>
+        
+        <form action="/peliculas/nuevo" method="POST">
+            <!-- Nombre -->
+            <div class="form-group">
+                <label for="nombre">Nombre de la Película</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
 
+            <!-- Año -->
+            <div class="form-group">
+                <label for="anio">Año de Lanzamiento</label>
+                <input type="number" class="form-control" id="anio" name="anio" min="1900" max="2099" required>
+            </div>
+
+            <!-- Género -->
+            <div class="form-group">
+                <label for="genero">Género(s)</label>
+                <select class="form-control" id="genero" name="genero[]" multiple required>
+                    <option value="Acción">Acción</option>
+                    <option value="Aventura">Aventura</option>
+                    <option value="Ciencia Ficción">Ciencia Ficción</option>
+                    <option value="Crimen">Crimen</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Fantasía">Fantasía</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Suspenso">Suspenso</option>
+                    <option value="Catástrofes">Catástrofes</option>
+                </select>
+                <small class="form-text text-muted">Mantén presionada la tecla Ctrl para seleccionar varios géneros.</small>
+            </div>
+            <!-- Img -->
+            <div class="form-group">
+                <label for="img">Nombre de img de la Película</label>
+                <input type="text" class="form-control" id="img" name="img" required>
+            </div>
+            
+
+            <!-- URL del Trailer -->
+            <div class="form-group">
+                <label for="trailer">URL del Trailer</label>
+                <input type="url" class="form-control" id="trailer" name="trailer" required>
+            </div>
+
+            <!-- Botón de Enviar -->
+            <button type="submit" class="btn btn-primary btn-block">Agregar Película</button>
+        </form>
+        </div>`;
+    return html;
+    }
 export default {
     crearPagina,
     crearCardsPeliculas,

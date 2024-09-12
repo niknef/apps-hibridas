@@ -1,5 +1,16 @@
 [
     {
+        "id": 1,
+        "nombre": "Top Gun: Pasión y Gloria",
+        "anio": "1986",
+        "genero": [
+            "Acción",
+            "Romance"
+        ],
+        "img": "top_gun.webp",
+        "trailer": "https://www.youtube.com/watch?v=ArOMXELHiLw"
+    },
+    {
         "id": 2,
         "nombre": "Top Gun: Maverick",
         "anio": "2022",
@@ -96,36 +107,6 @@
             "Acción"
         ],
         "img": "iron_man.webp",
-        "trailer": "https://www.youtube.com/watch?v=8ugaeA-nMTc",
-        "eliminado": true
-    },
-    {
-        "id": 10,
-        "nombre": "nicolas",
-        "anio": "2000",
-        "genero": [
-            "Aventura",
-            "Ciencia Ficción",
-            "Crimen"
-        ],
-        "img": "avatar.webp",
-        "trailer": "https://www.youtube.com/watch?v=he8PsBXLAg8",
-        "eliminado": true
-    },
-    {
-        "id": 11,
-        "nombre": "abigail",
-        "anio": "2000",
-        "genero": [
-            "Aventura",
-            "Ciencia Ficción",
-            "Crimen",
-            "Fantasía",
-            "Romance",
-            "Suspenso"
-        ],
-        "img": "avatar.webp",
-        "trailer": "https://www.youtube.com/watch?v=he8PsBXLAg8",
-        "eliminado": true
+        "trailer": "https://www.youtube.com/watch?v=8ugaeA-nMTc"
     }
 ]
