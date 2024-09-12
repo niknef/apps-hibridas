@@ -18,12 +18,33 @@ function crearPagina(titulo, contenido){
     return html
 };
 
-function crearCardsPeliculas(peliculas) {
+function crearHome() {
+    let html = `
+            <div class="container text-center mt-5">
+                <h1 class="mb-4">MANEJADOR DE PELÍCULAS</h1>
+                <div class="d-flex justify-content-center gap-3">
+                    <a class="btn btn-primary" href="/peliculas">Mis Películas</a>
+                    <a class="btn btn-success" href="/peliculas/nuevo">Agregar Película</a>
+                    <a class="btn btn-danger" href="/borradas">Borradas</a>
+                </div>
+            </div>
+            
+    `;
+    return html;
+};
+
+function crearCardsPeliculas(peliculas, botonEliminar = true) {
     let html = `
     <div class="container py-4">
-    <a class="btn btn-primary" href='/peliculas/nuevo' >Agregar Pelicula</a>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-0">Películas</h1>
+    <div class="d-flex flex-row gap-2">
+    <a class="btn btn-primary" href="/peliculas/nuevo">Agregar Película</a>
+    <a href='/' class="btn btn-secondary text-white fw-semibold">Volver</a>
+    </div>
+    </div>
         <div class="row justify-content-center g-4">`;
-
+    
     if (peliculas.length === 0) {
         html += `<p>No hay películas disponibles.</p>`;
     } else {
@@ -43,11 +64,16 @@ function crearCardsPeliculas(peliculas) {
             });
 
             html += `</div>
-                    <div class="d-flex flex-row mt-2 align-middle gap-2">
-                        <a href="${pelicula.trailer}" target="_blank" class="btn btn-primary">Ver trailer</a>
-                        <a class="btn btn-secondary" href='/peliculas/${pelicula.id}' >Detalle</a>
-                        <a class="btn btn-danger" href='/peliculas/eliminar/${pelicula.id}' >Eliminar</a>
-                    </div>
+                    <div class="d-flex flex-wrap mt-2 align-items-center gap-2">
+                        <a href="${pelicula.trailer}" target="_blank" class="btn btn-primary flex-grow-1">Trailer</a>
+                        <a class="btn btn-secondary flex-grow-1" href='/peliculas/${pelicula.id}' >Detalle</a>`;
+                        if (botonEliminar) {
+                            html += `<a class="btn btn-danger flex-grow-1" href='/peliculas/eliminar/${pelicula.id}' >Eliminar</a>`;
+                        }else{
+                            html += `<a class="btn btn-success flex-grow-1" href='/borradas/restaurar/${pelicula.id}' >Restaurar</a>`;
+                        }
+                        html += `</div>
+                        
                     </div>
                 </div>
             </div>`;
@@ -79,9 +105,11 @@ function crearDetallePelicula(pelicula) {
             });
             
             html += `
-                <p><strong>Trailer:</strong> <a href="${pelicula.trailer}" target="_blank">Ver trailer</a></p>
+            <div class="d-flex flex-wrap mt-2 align-items-center gap-2">
                 
-                <a href='/peliculas' class="btn btn-info btn-lg mt-2 w-50 text-white fw-semibold">Volver</a>
+                <a href="${pelicula.trailer}" class="btn btn-info btn-lg mt-2 w-50 text-white fw-semibold">Trailer</a>
+                <a href='/peliculas/eliminar/${pelicula.id}' class="btn btn-danger btn-lg mt-2 w-50 text-white fw-semibold">Eliminar</a>
+                <a href='/peliculas' class="btn btn-secondary btn-lg mt-2 w-50 text-white fw-semibold">Volver</a>
             </div>
         </div>
     </div>`;
@@ -92,23 +120,22 @@ function crearDetallePelicula(pelicula) {
 function nuevaPelicula() {
     let html = `
     <div class="container mt-5 mb-5 p-4 bg-light border rounded shadow-sm">
-        
-    <h2 class="text-center text-primary mb-4">Agregar Nueva Película</h2>
-        
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-center text-primary">Agregar Nueva Película</h2>
+        <a href='/' class="btn btn-secondary text-white fw-semibold">Volver</a>
+    </div>   
         <form action="/peliculas/nuevo" method="POST">
-            <!-- Nombre -->
+
             <div class="form-group">
                 <label for="nombre">Nombre de la Película</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" required>
             </div>
 
-            <!-- Año -->
             <div class="form-group">
                 <label for="anio">Año de Lanzamiento</label>
                 <input type="number" class="form-control" id="anio" name="anio" min="1900" max="2099" required>
             </div>
 
-            <!-- Género -->
             <div class="form-group">
                 <label for="genero">Género(s)</label>
                 <select class="form-control" id="genero" name="genero[]" multiple required>
@@ -124,32 +151,33 @@ function nuevaPelicula() {
                 </select>
                 <small class="form-text text-muted">Mantén presionada la tecla Ctrl para seleccionar varios géneros.</small>
             </div>
-            <!-- Img -->
+
             <div class="form-group">
                 <label for="img">Nombre de img de la Película</label>
                 <input type="text" class="form-control" id="img" name="img" required>
             </div>
             
-
-            <!-- URL del Trailer -->
             <div class="form-group">
                 <label for="trailer">URL del Trailer</label>
                 <input type="url" class="form-control" id="trailer" name="trailer" required>
             </div>
 
-            <!-- Botón de Enviar -->
-            <button type="submit" class="btn btn-primary btn-block">Agregar Película</button>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary btn-block mt-3">Agregar Película</button>
+            </div>
         </form>
         </div>`;
     return html;
     }
 export default {
+    crearHome,
     crearPagina,
     crearCardsPeliculas,
     crearDetallePelicula,
     nuevaPelicula
 };
 export {
+    crearHome,
     crearPagina,
     crearCardsPeliculas,
     crearDetallePelicula,

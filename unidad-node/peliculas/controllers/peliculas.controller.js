@@ -1,6 +1,10 @@
 import * as peliculaService from "../services/peliculas.service.js"
 import * as peliculaView from "../views/peliculas.view.js"
 
+
+const getHome = (req, res) => {
+    res.send(peliculaView.crearPagina("Home", peliculaView.crearHome()))
+};
 const getPeliculas = (req, res)=>{
     peliculaService.getPeliculas()
         .then(peliculas => {
@@ -32,10 +36,28 @@ const eliminarPelicula = (req, res) => {
         .catch( (err) => res.send(peliculaView.crearPagina("Error Al eliminar una pelicula", `<p>${err}</p>`)) )
 }
 
+const getPeliculasBorradas = (req, res) => {
+    peliculaService.getPeliculasBorradas()
+        .then(peliculas => {
+            res.send(peliculaView.crearPagina("Películas Borradas", peliculaView.crearCardsPeliculas(peliculas, false)))
+        })
+        .catch(err => {
+            res.send(peliculaView.crearPagina("Error", `<p>${err}</p>`))
+        });
+};
+
+const restaurarPelicula = (req, res) => {
+    peliculaService.restaurarPelicula(req.params.id)
+        .then( ( id ) => res.redirect("/borradas") )
+        .catch( (err) => res.send(peliculaView.crearPagina("Error Al restaurar una pelicula", `<p>${err}</p>`)) )
+}
 export {
+    getHome,
     getPeliculaId,
     getPeliculas,
     nuevaPelicula,
     agregarPelicula,
-    eliminarPelicula
+    eliminarPelicula,
+    getPeliculasBorradas, 
+    restaurarPelicula
 }
