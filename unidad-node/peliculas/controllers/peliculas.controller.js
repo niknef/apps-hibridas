@@ -48,7 +48,7 @@ const getPeliculasBorradas = (req, res) => {
 
 const restaurarPelicula = (req, res) => {
     peliculaService.restaurarPelicula(req.params.id)
-        .then( ( id ) => res.redirect("/borradas") )
+        .then( ( id ) => res.redirect("/peliculas/borradas") )
         .catch( (err) => res.send(peliculaView.crearPagina("Error Al restaurar una pelicula", `<p>${err}</p>`)) )
 }
 export {

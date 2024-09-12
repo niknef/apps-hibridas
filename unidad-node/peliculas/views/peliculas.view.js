@@ -25,7 +25,7 @@ function crearHome() {
                 <div class="d-flex justify-content-center gap-3">
                     <a class="btn btn-primary" href="/peliculas">Mis Películas</a>
                     <a class="btn btn-success" href="/peliculas/nuevo">Agregar Película</a>
-                    <a class="btn btn-danger" href="/borradas">Borradas</a>
+                    <a class="btn btn-danger" href="/peliculas/borradas">Borradas</a>
                 </div>
             </div>
             
@@ -52,7 +52,7 @@ function crearCardsPeliculas(peliculas, botonEliminar = true) {
             html += `
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100">
-                    <img src="./img/${pelicula.img}" class="card-img-top" alt="${pelicula.nombre}">
+                    <img src="../img/${pelicula.img}" class="card-img-top" alt="${pelicula.nombre}">
                     <div class="card-body">
                         <h5 class="card-title">${pelicula.nombre}</h5>
                         <p class="card-text">Año: ${pelicula.anio}</p>
@@ -70,7 +70,7 @@ function crearCardsPeliculas(peliculas, botonEliminar = true) {
                         if (botonEliminar) {
                             html += `<a class="btn btn-danger flex-grow-1" href='/peliculas/eliminar/${pelicula.id}' >Eliminar</a>`;
                         }else{
-                            html += `<a class="btn btn-success flex-grow-1" href='/borradas/restaurar/${pelicula.id}' >Restaurar</a>`;
+                            html += `<a class="btn btn-success flex-grow-1" href='/peliculas/borradas/restaurar/${pelicula.id}' >Restaurar</a>`;
                         }
                         html += `</div>
                         
@@ -154,7 +154,7 @@ function nuevaPelicula() {
 
             <div class="form-group">
                 <label for="img">Nombre de img de la Película</label>
-                <input type="text" class="form-control" id="img" name="img" required>
+                <input type="text" class="form-control" id="img" name="img" value="avatar.webp">
             </div>
             
             <div class="form-group">
