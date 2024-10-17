@@ -2,6 +2,7 @@ import React from 'react'
 import Hola from './components/hola.jsx'
 import './App.css'
 
+
 function App() {
   const nombre = 'Nico'
   const usuarios = [
@@ -13,6 +14,7 @@ function App() {
   return (
     <>
       <Hola name={nombre} lastName="firpo"/>
+
       <div>     
         <ul>
           {usuarios.map((usuario) => (
